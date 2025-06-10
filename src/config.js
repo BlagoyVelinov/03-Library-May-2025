@@ -1,0 +1,1 @@
+export const settings = {host: "https://library-may-2025-server.onrender.com"}
