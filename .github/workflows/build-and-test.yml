@@ -1,0 +1,31 @@
+name: Build app - run the test and deploy
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the repository    
+      uses: actions/checkout@v4
+      
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18.x
+        cache: 'npm'
+        
+    - name: Install npm modules   
+      run: npm install
+
+    - name: Start the Backend  
+      run: npm run server &
+
+    - name: Start the Frontend
+    - run: npm run start &
+
+    - name: Execute UI tests
+      run: npm run test
